@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.UUID;
@@ -49,24 +50,35 @@ public class KaryawanController {
     }
 
     @PostMapping("/karyawan/add")
-    public String add(@ModelAttribute Karyawan karyawan) {
-        List<Gaji> gaji = karyawan.getGaji();
-        int gajiBonus = (int) Math.round(gaji.get(0).getGajiPokok() * karyawan.getPekerjaan().getBonus());
-        int gajiPpn = (int) Math.round((gajiBonus + gaji.get(0).getGajiPokok()) * 0.05);
-        Integer gajiAkhir = (gaji.get(0).getGajiPokok() + gajiBonus) - gajiPpn;
-        gaji.get(0).setGajiBonus(gajiBonus);
-        gaji.get(0).setGajiPpn(gajiPpn);
-        gaji.get(0).setGajiAkhir(gajiAkhir);
-        gaji.get(0).setKaryawan(karyawan);
-        karyawanRepository.save(karyawan);
-        gajiRepository.save(gaji.get(0));
-        return "redirect:/home";
+    public String add(@ModelAttribute Karyawan karyawan, RedirectAttributes redirectAttributes) {
+        try{
+            List<Gaji> gaji = karyawan.getGaji();
+            int gajiBonus = (int) Math.round(gaji.get(0).getGajiPokok() * karyawan.getPekerjaan().getBonus());
+            int gajiPpn = (int) Math.round((gajiBonus + gaji.get(0).getGajiPokok()) * 0.05);
+            Integer gajiAkhir = (gaji.get(0).getGajiPokok() + gajiBonus) - gajiPpn;
+            gaji.get(0).setGajiBonus(gajiBonus);
+            gaji.get(0).setGajiPpn(gajiPpn);
+            gaji.get(0).setGajiAkhir(gajiAkhir);
+            gaji.get(0).setKaryawan(karyawan);
+            karyawanRepository.save(karyawan);
+            gajiRepository.save(gaji.get(0));
+            return "redirect:/home";
+        }catch (org.springframework.dao.DataIntegrityViolationException e){
+            redirectAttributes.addFlashAttribute("duplicateKey","Telepon dan Email Harus Unik");
+            return "redirect:/karyawan/add";
+        }
     }
 
     @PostMapping("/karyawan/update/{id}")
-    public String update(@ModelAttribute("karyawanNew") Karyawan karyawan, @PathVariable UUID id) {
-        karyawanRepository.updateAll(karyawan.getNama(), karyawan.getTanggalLahir(), karyawan.getTelepon(), karyawan.getEmail(), karyawan.getPekerjaan(),id);
-        return "redirect:/home";
+    public String update(@ModelAttribute("karyawanNew") Karyawan karyawan, @PathVariable UUID id, RedirectAttributes redirectAttributes) {
+        try{
+            karyawanRepository.updateAll(karyawan.getNama(), karyawan.getTanggalLahir(), karyawan.getTelepon(), karyawan.getEmail(), karyawan.getPekerjaan(),id);
+            return "redirect:/home";
+        }catch (org.springframework.dao.DataIntegrityViolationException e){
+            redirectAttributes.addFlashAttribute("duplicateKey","Telepon dan Email Harus Unik");
+            return "redirect:/karyawan/update/"+id;
+        }
+
     }
 
     @GetMapping("/karyawan/delete/{id}")
