@@ -1,0 +1,26 @@
+services:
+  app:
+    image: 'lsp-myhr:latest'
+    build:
+      context: .
+      dockerfile: App.dockerfile
+    container_name: app
+    depends_on:
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/myhr
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=create-drop
+    ports:
+      - "8080:8080"
+
+  db:
+    image: 'lsp-myhr-db:latest'
+    build:
+      context: .
+      dockerfile: Db.dockerfile
+    container_name: db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres

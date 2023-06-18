@@ -1,0 +1,38 @@
+.nav-link {
+    color: #B62B2B;
+}
+
+.nav-link:hover {
+    color: #6c7585;
+}
+
+.table-secondary {
+    --bs-table-bg: #B62B2B;
+    color: #D8C9C9;
+    border-color: black;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
+    color: #fff;
+    background-color: #B62B2B;
+}
+
+.toast {
+    margin-right: 50px;
+    margin-top: 50px;
+}
+
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
+}

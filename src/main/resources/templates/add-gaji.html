@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Gaji</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/form.css}"/>
+    <script type="text/javascript" th:src="@{/js/bootstrap.bundle.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/form.js}"></script>
+</head>
+<body>
+<div class="container">
+    <main>
+        <div class="py-5 text-center">
+            <img th:src="@{/img/icon-main.png}" width="72" alt="logo" src="">
+            <h2>Tambah Gaji</h2>
+        </div>
+        <div class="row g-5">
+            <div class="col-md-5 col-lg-4 order-md-last">
+                <img th:src="@{/img/employee.png}" width="300" height="700" alt="manusia" src="">
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h4 th:text="${karyawan.nama}"></h4>
+                </div>
+                <div class="card-body  my-1 mx-4">
+                    <div class="row align-items-center py-2">
+                        <div class="col-sm-6" th:text="${'Tanggal Lahir : '+karyawan.getTanggalLahir()}">
+                        </div>
+                        <div class="col-sm-6" th:text="${'Email : '+karyawan.getEmail()}">
+                        </div>
+                    </div>
+                    <div class="row align-items-center py-2">
+                        <div class="col-sm-6" th:text="${'Telepon : '+karyawan.getTelepon()}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7 col-lg-8">
+                <form method="post" th:action="@{/karyawan/__${karyawan.id}__/gaji/add}" th:object="${gajiNew}" class="needs-validation" novalidate>
+                    <div class="row g-3">
+                        <hr class="my-4">
+                        <h4 class="mb-3">Gaji Baru</h4>
+                        <div class="col-md-5">
+                            <label for="gaji" class="form-label">Gaji Pokok</label>
+                            <input th:field="*{gajiPokok}" type="number" min="0" class="form-control" id="gaji" placeholder="3500000" required>
+                            <div class="invalid-feedback">
+                                Gaji Pokok Harus Terisi.
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <label for="waktuGaji" class="form-label">Tanggal Gaji</label>
+                            <input th:field="*{waktuGaji}" type="date" class="form-control" id="waktuGaji" required>
+                            <div class="invalid-feedback">
+                                Tanggal Gaji Harus Terisi.
+                            </div>
+                        </div>
+                        <hr class="my-4">
+                        <button class="w-100 btn btn-primary btn-lg" type="submit" name="tambah" id="tambah">
+                            Tambah Gaji
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+</div>
+<div class="container" style="">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <div class="col-md-4 d-flex align-items-center">
+            <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+                <img th:src="@{/img/icon-main.png}" width="40" alt="logo" src="">
+            </a>
+            <span class="text-muted">&copy; 2023 PT Barokah Tbk</span>
+        </div>
+    </footer>
+</div>
+</body>
+</html>

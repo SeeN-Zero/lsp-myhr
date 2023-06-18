@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel='stylesheet' th:href="@{/css/auth.css}"/>
+</head>
+<body class="text-center">
+<div class="container">
+    <main class="form-signin">
+        <form th:action="@{/authentication}" method="POST">
+                <img class="mb-4" th:src="@{/img/icon-main.png}" alt="logo" height="72" src="">
+            <div class="form-floating">
+                <input type="text" class="form-control" name="username" id="username" placeholder="Username">
+                <label for="username">Username</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+                <label for="password">Password</label>
+            </div>
+            <div th:if="${param.error}">
+                <div class="alert alert-danger" role="alert">
+                    Username Atau Password Salah!
+                </div>
+            </div>
+            <button class="w-100 btn btn-lg btn-primary" type="submit" name="login" id="login">Login</button>
+<!--            <a th:href="${'/registration'}" class="nav-link"> Registrasi disini</a>-->
+        </form>
+    </main>
+</div>
+<div class="container" style="position: absolute; bottom: 0; right: 30px; left: 30px">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <div class="col-md-4 d-flex align-items-center">
+            <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+                    <img th:src="@{/img/icon-main.png}" width="40" alt="logo" src="">
+            </a>
+            <span class="text-muted">&copy; 2023 PT Barokah Tbk</span>
+        </div>
+    </footer>
+</div>
+</body>
+
+</html>
