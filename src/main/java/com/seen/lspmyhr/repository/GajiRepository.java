@@ -16,7 +16,7 @@ public interface GajiRepository extends JpaRepository<Gaji, UUID> {
     @Transactional
     @Modifying
     @Query("""
-            update Gaji g set g.gajiPokok = ?1, g.gajiBonus = ?2, g.gajiPpn = ?3, g.gajiAkhir = ?4, g.waktuGaji = ?5
+            update Gaji g set g.gajiPokok = ?1, g.gajiBonus = ?2, g.gajiPph = ?3, g.gajiAkhir = ?4, g.waktuGaji = ?5
             where g.id = ?6""")
-    int updateAll(Integer gajiPokok, Integer gajiBonus, Integer gajiPpn, Integer gajiAkhir, Date waktuGaji, @NonNull UUID id);
+    int updateAll(Integer gajiPokok, Integer gajiBonus, Integer gajiPph, Integer gajiAkhir, Date waktuGaji, @NonNull UUID id);
 }

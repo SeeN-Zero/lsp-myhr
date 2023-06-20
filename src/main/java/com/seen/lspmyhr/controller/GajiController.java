@@ -50,7 +50,7 @@ public class GajiController {
     public String update(@PathVariable UUID karyawanId, @PathVariable UUID gajiId, @ModelAttribute Gaji gaji){
         Karyawan karyawan = karyawanRepository.getReferenceById(karyawanId);
         Gaji calculated = gajiService.calculateGaji(gaji, karyawan);
-        gajiRepository.updateAll(calculated.getGajiPokok(), calculated.getGajiBonus(), calculated.getGajiPpn(), calculated.getGajiAkhir(), calculated.getWaktuGaji(), gajiId);
+        gajiRepository.updateAll(calculated.getGajiPokok(), calculated.getGajiBonus(), calculated.getGajiPph(), calculated.getGajiAkhir(), calculated.getWaktuGaji(), gajiId);
         return "redirect:/karyawan/"+karyawanId;
     }
 

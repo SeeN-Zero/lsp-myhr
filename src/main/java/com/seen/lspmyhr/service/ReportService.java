@@ -33,7 +33,7 @@ public class ReportService {
         table.addCell(cell);
         cell.setPhrase(new Phrase("Gaji Bonus", font));
         table.addCell(cell);
-        cell.setPhrase(new Phrase("PPN", font));
+        cell.setPhrase(new Phrase("PPH", font));
         table.addCell(cell);
         cell.setPhrase(new Phrase("Gaji", font));
         table.addCell(cell);
@@ -60,7 +60,7 @@ public class ReportService {
             table.addCell(cell);
             cell.setPhrase(new Phrase(kursIndonesia.format(gaji.getGajiBonus()), font));
             table.addCell(cell);
-            cell.setPhrase(new Phrase(kursIndonesia.format(gaji.getGajiPpn()), font));
+            cell.setPhrase(new Phrase(kursIndonesia.format(gaji.getGajiPph()), font));
             table.addCell(cell);
             cell.setPhrase(new Phrase(kursIndonesia.format(gaji.getGajiAkhir()), font));
             table.addCell(cell);

@@ -54,10 +54,10 @@ public class KaryawanController {
         try{
             List<Gaji> gaji = karyawan.getGaji();
             int gajiBonus = (int) Math.round(gaji.get(0).getGajiPokok() * karyawan.getPekerjaan().getBonus());
-            int gajiPpn = (int) Math.round((gajiBonus + gaji.get(0).getGajiPokok()) * 0.05);
-            Integer gajiAkhir = (gaji.get(0).getGajiPokok() + gajiBonus) - gajiPpn;
+            int gajiPph = (int) Math.round((gajiBonus + gaji.get(0).getGajiPokok()) * 0.05);
+            Integer gajiAkhir = (gaji.get(0).getGajiPokok() + gajiBonus) - gajiPph;
             gaji.get(0).setGajiBonus(gajiBonus);
-            gaji.get(0).setGajiPpn(gajiPpn);
+            gaji.get(0).setGajiPph(gajiPph);
             gaji.get(0).setGajiAkhir(gajiAkhir);
             gaji.get(0).setKaryawan(karyawan);
             karyawanRepository.save(karyawan);

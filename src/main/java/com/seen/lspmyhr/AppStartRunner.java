@@ -55,10 +55,10 @@ public class AppStartRunner implements ApplicationRunner {
         //Initialize Gaji
         int gajiPokok = 8000000;
         int gajiBonus = (int) Math.round(gajiPokok * karyawan.getPekerjaan().getBonus());
-        int gajiPpn = (int) Math.round(((gajiBonus + gajiPokok) * 0.05));
-        Integer gajiAkhir = gajiPokok + gajiBonus - gajiPpn;
+        int gajiPph = (int) Math.round(((gajiBonus + gajiPokok) * 0.05));
+        Integer gajiAkhir = gajiPokok + gajiBonus - gajiPph;
         Date waktuGaji = new Date(new SimpleDateFormat("yyyy-MM-dd").parse("2023-06-15").getTime());
-        Gaji gaji = new Gaji(null, gajiPokok, gajiBonus, gajiPpn, gajiAkhir, waktuGaji, karyawan);
+        Gaji gaji = new Gaji(null, gajiPokok, gajiBonus, gajiPph, gajiAkhir, waktuGaji, karyawan);
         gajiRepository.save(gaji);
 
     }

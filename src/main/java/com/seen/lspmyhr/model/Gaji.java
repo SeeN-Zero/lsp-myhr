@@ -31,9 +31,9 @@ public class Gaji {
     @JdbcTypeCode(SqlTypes.INTEGER)
     private Integer gajiBonus;
 
-    @Column(name = "gaji_ppn", nullable = false)
+    @Column(name = "gaji_pph", nullable = false)
     @JdbcTypeCode(SqlTypes.INTEGER)
-    private Integer gajiPpn;
+    private Integer gajiPph;
 
     @Column(name = "gaji_akhir", nullable = false)
     @JdbcTypeCode(SqlTypes.INTEGER)

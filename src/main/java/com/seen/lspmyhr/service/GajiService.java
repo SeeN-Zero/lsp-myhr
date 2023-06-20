@@ -9,10 +9,10 @@ public class GajiService {
 
     public Gaji calculateGaji (Gaji gaji, Karyawan karyawan){
         int gajiBonus = (int) Math.round(gaji.getGajiPokok() * karyawan.getPekerjaan().getBonus());
-        int gajiPpn = (int) Math.round((gajiBonus + gaji.getGajiPokok()) * 0.05);
-        Integer gajiAkhir = gaji.getGajiPokok() + gajiBonus - gajiPpn;
+        int gajiPph = (int) Math.round((gajiBonus + gaji.getGajiPokok()) * 0.05);
+        Integer gajiAkhir = gaji.getGajiPokok() + gajiBonus - gajiPph;
         gaji.setGajiBonus(gajiBonus);
-        gaji.setGajiPpn(gajiPpn);
+        gaji.setGajiPph(gajiPph);
         gaji.setGajiAkhir(gajiAkhir);
         gaji.setKaryawan(karyawan);
         return gaji;
